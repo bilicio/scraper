@@ -12,7 +12,7 @@ export async function POST() {
   const isLocal = !!process.env.CHROME_EXECUTABLE_PATH;
 
   const browser = await puppeteer.launch({
-    args: isLocal ? puppeteer.defaultArgs() : chromium.args,
+    args: chromium.args,
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath(),
     headless: chromium.headless,
