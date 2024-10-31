@@ -14,7 +14,9 @@ export async function POST() {
   const browser = await puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath(),
+    executablePath: await chromium.executablePath(
+      "https://scraper-chromium.eorpdr.easypanel.host/"
+    ),
     headless: chromium.headless,
   });
 
