@@ -15,7 +15,7 @@ export async function POST() {
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath(
-      "https://scraper-chromium.eorpdr.easypanel.host/"
+      "https://scraper-chromium.eorpdr.easypanel.host:3000"
     ),
     headless: chromium.headless,
   });
