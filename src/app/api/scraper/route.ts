@@ -11,7 +11,7 @@ export async function POST() {
 
   const isLocal = !!process.env.CHROME_EXECUTABLE_PATH;
   const path = await chromium.executablePath(
-    "/app/node_modules/@sparticuz/chromium"
+    "/app/node_modules/@sparticuz/chromium/bin"
   );
   console.log("path:", path);
 
