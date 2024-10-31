@@ -10,7 +10,9 @@ export async function POST() {
   );
 
   const isLocal = !!process.env.CHROME_EXECUTABLE_PATH;
-  const path = await chromium.executablePath("/opt/chromium");
+  const path = await chromium.executablePath(
+    "/app/node_modules/@sparticuz/chromium"
+  );
   console.log("path:", path);
 
   const browser = await puppeteer.launch({
