@@ -1,11 +1,11 @@
 import chromium from "@sparticuz/chromium";
-import puppeteer from "puppeteer-core";
+import puppeteer from "puppeteer";
 
 chromium.setHeadlessMode = true;
 chromium.setGraphicsMode = false;
 
 export async function POST() {
-  await chromium.font(
+  /*await chromium.font(
     "https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf"
   );
 
@@ -23,7 +23,29 @@ export async function POST() {
   const pageTitle = await page.title();
   await browser.close();
 
-  return Response.json({
+  */
+  let browser;
+
+  try {
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto("https://www.amazon.com");
+
+    const pageTitle = await page.title();
+
+    return Response.json({ test: pageTitle });
+  } catch (error: any) {
+    return Response.json(
+      { error: `An error occurred: ${error.message}` },
+      { status: 200 }
+    );
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+
+  /*return Response.json({
     test: pageTitle,
-  });
+  });*/
 }
