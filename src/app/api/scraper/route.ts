@@ -9,12 +9,13 @@ export async function POST() {
     "https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf"
   );
 
-  //const isLocal = !!process.env.CHROME_EXECUTABLE_PATH;
+  const isLocal = !!process.env.CHROME_EXECUTABLE_PATH;
 
   const browser = await puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath("/"),
+    executablePath:
+      process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath()),
     headless: chromium.headless,
   });
 
@@ -24,6 +25,6 @@ export async function POST() {
   await browser.close();
 
   return Response.json({
-    pageTitle,
+    test: pageTitle,
   });
 }
